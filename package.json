@@ -1,10 +1,10 @@
 {
-  "name": "react-d3-axis",
+  "name": "react-d3-axis-mod",
   "version": "0.1.2",
-  "description": "React-based Axis component for D3",
+  "description": "React-based Axis component for D3 (fork with text shadow)",
   "main": "lib/react-d3-axis.js",
-  "repository": "https://github.com/shauns/react-d3-axis.git",
-  "author": "shauns",
+  "repository": "https://github.com/cmdcolin/react-d3-axis-mod.git",
+  "author": "cmdcolin",
   "license": "MIT",
   "scripts": {
     "prepublish": "rm -rf lib && babel src --out-dir lib --ignore __tests__ && flow-copy-source -i **/__tests__/**/*.js -v src lib",
@@ -14,7 +14,7 @@
     "prettier": "prettier --write --bracket-spacing=false --single-quote --trailing-comma src/*.js src/**/*.js"
   },
   "peerDependencies": {
-    "react": "^15.0.0"
+    "react": ">=15.0.0"
   },
   "dependencies": {},
   "devDependencies": {
@@ -34,7 +34,7 @@
     "flow-bin": "^0.37.0",
     "flow-copy-source": "^1.1.0",
     "jest": "^18.1.0",
-    "prettier": "^0.11.0",
+    "prettier": "^2.0.0",
     "react": "^15.4.2",
     "react-test-renderer": "^15.4.2"
   },

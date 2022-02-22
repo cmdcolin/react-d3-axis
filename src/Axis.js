@@ -1,4 +1,6 @@
 // @flow
+//
+console.log('t1')
 import React from 'react'
 import type { Scaler, AxisStyle } from './types'
 
@@ -106,13 +108,13 @@ export default function Axis<T>(props: AxisProps<T>) {
         return (
           <g key={`tick-${idx}`} opacity={1} transform={tickTransformer(v)}>
             <line {...lineProps} />
-            <text {...textProps}>{format(v)}</text>
             <text
               style={{ stroke: 'white', strokeWidth: '0.6em' }}
               {...textProps}
             >
               {format(v)}
             </text>
+            <text {...textProps}>{format(v)}</text>
           </g>
         )
       })}

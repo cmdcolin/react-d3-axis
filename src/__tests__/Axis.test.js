@@ -1,7 +1,7 @@
 // @flow
-import React from 'react'
-import renderer from 'react-test-renderer'
-import Axis, { TOP, RIGHT, BOTTOM, LEFT } from '../Axis'
+import React from 'react';
+import renderer from 'react-test-renderer';
+import Axis, { TOP, RIGHT, BOTTOM, LEFT } from '../Axis';
 
 test('Renders bottom-oriented', () => {
   const component = renderer.create(
@@ -12,10 +12,10 @@ test('Renders bottom-oriented', () => {
       position={d => d * 2}
       format={d => `${d}`}
     />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
 test('Renders top-oriented', () => {
   const component = renderer.create(
@@ -26,10 +26,10 @@ test('Renders top-oriented', () => {
       position={d => d * 2}
       format={d => `${d}`}
     />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
 test('Renders left-oriented', () => {
   const component = renderer.create(
@@ -40,10 +40,10 @@ test('Renders left-oriented', () => {
       position={d => d * 2}
       format={d => `${d}`}
     />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
 test('Renders right-oriented', () => {
   const component = renderer.create(
@@ -54,7 +54,7 @@ test('Renders right-oriented', () => {
       position={d => d * 2}
       format={d => `${d}`}
     />,
-  )
-  let tree = component.toJSON()
-  expect(tree).toMatchSnapshot()
-})
+  );
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
+});

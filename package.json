@@ -9,6 +9,7 @@
   "scripts": {
     "prepublish": "rm -rf lib && babel src --out-dir lib --ignore __tests__ && flow-copy-source -i **/__tests__/**/*.js -v src lib",
     "lint": "eslint --ext .js,.jsx .",
+    "build": " babel src --out-dir lib --ignore __tests__",
     "flow_check": "flow check",
     "test:travis": "jest",
     "prettier": "prettier --write --bracket-spacing=false --single-quote --trailing-comma src/*.js src/**/*.js"

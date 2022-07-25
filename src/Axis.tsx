@@ -1,4 +1,3 @@
-// @flow
 //
 import React from 'react';
 import type { Scaler, AxisStyle } from './types';
@@ -17,7 +16,6 @@ export const TOP = 'TOP';
 export const RIGHT = 'RIGHT';
 export const BOTTOM = 'BOTTOM';
 export const LEFT = 'LEFT';
-
 const defaultAxisStyle: AxisStyle = {
   orient: BOTTOM,
   tickSizeInner: 6,
@@ -28,18 +26,15 @@ const defaultAxisStyle: AxisStyle = {
   tickFont: 'sans-serif',
   tickFontSize: 10,
 };
-
 type AxisProps<T> = {
-  style: Object,
+  style: Record<string, any>,
   range: Array<number>,
   values: Array<T>,
   position: Scaler<T>,
   format(d: T): string,
 };
-
 export default function Axis<T>(props: AxisProps<T>) {
   const { style, range, values, position, format, shadow = 0 } = props;
-
   const axisStyle = Object.assign({}, defaultAxisStyle, style);
   const {
     orient,
@@ -51,9 +46,9 @@ export default function Axis<T>(props: AxisProps<T>) {
     tickFont,
     tickFontSize,
   } = axisStyle;
-
   const transform =
     orient === TOP || orient === BOTTOM ? translateX : translateY;
+
   const tickTransformer = d => transform(position, position, d);
 
   const k = orient === TOP || orient === LEFT ? -1 : 1;
@@ -64,13 +59,10 @@ export default function Axis<T>(props: AxisProps<T>) {
   const isHorizontal = isRight || isLeft;
   const x = isHorizontal ? 'x' : 'y';
   const y = isHorizontal ? 'y' : 'x';
-
   const halfWidth = strokeWidth / 2;
   const range0 = range[0] + halfWidth;
   const range1 = range[range.length - 1] + halfWidth;
-
   const spacing = Math.max(tickSizeInner, 0) + tickPadding;
-
   return (
     <g
       fill={'none'}
@@ -92,24 +84,27 @@ export default function Axis<T>(props: AxisProps<T>) {
         }
       />
       {values.map((v, idx) => {
-        let lineProps = { stroke: strokeColor };
+        let lineProps = {
+          stroke: strokeColor,
+        };
         lineProps[`${x}2`] = k * tickSizeInner;
         lineProps[`${y}1`] = halfWidth;
         lineProps[`${y}2`] = halfWidth;
-
         let textProps = {
           fill: strokeColor,
           dy: isTop ? '0em' : isBottom ? '0.71em' : '0.32em',
         };
         textProps[`${x}`] = k * spacing;
         textProps[`${y}`] = halfWidth;
-
         return (
           <g key={`tick-${idx}`} opacity={1} transform={tickTransformer(v)}>
             <line {...lineProps} />
             {shadow ? (
               <text
-                style={{ stroke: 'white', strokeWidth: shadow }}
+                style={{
+                  stroke: 'white',
+                  strokeWidth: shadow,
+                }}
                 {...textProps}
               >
                 {format(v)}

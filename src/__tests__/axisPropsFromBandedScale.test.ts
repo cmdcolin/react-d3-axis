@@ -1,4 +1,3 @@
-// @flow
 import { scaleBand } from 'd3-scale';
 import axisPropsFromBandedScale from '../axisPropsFromBandedScale';
 
@@ -7,7 +6,7 @@ test('Works with bandwidth scales', () => {
     .domain(['foo', 'bar', 'baz'])
     .range([0, 500])
     .padding(20);
-  const props = axisPropsFromBandedScale(scale, 10);
+  const props = axisPropsFromBandedScale(scale);
   expect(props).toMatchSnapshot();
 
   expect(props.position('foo')).toEqual(125);

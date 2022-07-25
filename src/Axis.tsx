@@ -27,11 +27,12 @@ const defaultAxisStyle: AxisStyle = {
   tickFontSize: 10,
 };
 type AxisProps<T> = {
-  style: Record<string, any>,
-  range: Array<number>,
-  values: Array<T>,
-  position: Scaler<T>,
-  format(d: T): string,
+  style: Record<string, any>;
+  range: Array<number>;
+  values: Array<T>;
+  position: Scaler<T>;
+  format(d: T): string;
+  shadow?: number;
 };
 export default function Axis<T>(props: AxisProps<T>) {
   const { style, range, values, position, format, shadow = 0 } = props;
@@ -49,7 +50,7 @@ export default function Axis<T>(props: AxisProps<T>) {
   const transform =
     orient === TOP || orient === BOTTOM ? translateX : translateY;
 
-  const tickTransformer = d => transform(position, position, d);
+  const tickTransformer = (d: T) => transform(position, position, d);
 
   const k = orient === TOP || orient === LEFT ? -1 : 1;
   const isRight = orient === RIGHT;
@@ -86,13 +87,18 @@ export default function Axis<T>(props: AxisProps<T>) {
       {values.map((v, idx) => {
         let lineProps = {
           stroke: strokeColor,
-        };
+        } as { stroke: string; x1: number; x2: number; y1: number; y2: number };
         lineProps[`${x}2`] = k * tickSizeInner;
         lineProps[`${y}1`] = halfWidth;
         lineProps[`${y}2`] = halfWidth;
         let textProps = {
           fill: strokeColor,
           dy: isTop ? '0em' : isBottom ? '0.71em' : '0.32em',
+        } as {
+          fill: string;
+          dy: string;
+          x: number;
+          y: number;
         };
         textProps[`${x}`] = k * spacing;
         textProps[`${y}`] = halfWidth;

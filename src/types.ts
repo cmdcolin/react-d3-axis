@@ -5,16 +5,14 @@ export type BandedScale<T> = {
   range(): Array<number>;
   copy(): BandedScale<T>;
   bandwidth(): number;
-  round(): boolean;
 };
 export type TickScale<T> = {
   (x: T): number;
   domain(): Array<T>;
   range(): Array<number>;
   ticks(count: number): Array<T>;
-  tickFormat(count: number, fmt: string | null | undefined): (val: T) => string;
+  tickFormat(count: number, fmt?: string | null): (val: T) => string;
   copy(): TickScale<T>;
-  round(): boolean;
 };
 export type Orients = 'TOP' | 'RIGHT' | 'BOTTOM' | 'LEFT';
 export type AxisStyle = {

@@ -1,4 +1,3 @@
-// @flow
 import { scaleLinear } from 'd3-scale';
 import axisPropsFromTickScale from '../axisPropsFromTickScale';
 

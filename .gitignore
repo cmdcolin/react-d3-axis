@@ -14,3 +14,4 @@ lib
 .env
 npm-debug.log
 .vscode
+dist

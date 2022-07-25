@@ -1,10 +1,9 @@
-// @flow
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import Axis, { TOP, RIGHT, BOTTOM, LEFT } from '../Axis';
 
 test('Renders bottom-oriented', () => {
-  const component = renderer.create(
+  const { container } = render(
     <Axis
       style={{ orient: BOTTOM }}
       range={[0, 1000]}
@@ -13,12 +12,11 @@ test('Renders bottom-oriented', () => {
       format={d => `${d}`}
     />,
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders top-oriented', () => {
-  const component = renderer.create(
+  const { container } = render(
     <Axis
       style={{ orient: TOP }}
       range={[0, 1000]}
@@ -27,12 +25,11 @@ test('Renders top-oriented', () => {
       format={d => `${d}`}
     />,
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders left-oriented', () => {
-  const component = renderer.create(
+  const { container } = render(
     <Axis
       style={{ orient: LEFT }}
       range={[0, 1000]}
@@ -41,12 +38,11 @@ test('Renders left-oriented', () => {
       format={d => `${d}`}
     />,
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders right-oriented', () => {
-  const component = renderer.create(
+  const { container } = render(
     <Axis
       style={{ orient: RIGHT }}
       range={[0, 1000]}
@@ -55,6 +51,5 @@ test('Renders right-oriented', () => {
       format={d => `${d}`}
     />,
   );
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

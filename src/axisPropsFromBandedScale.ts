@@ -1,8 +1,9 @@
 // @flow
-import type { BandedScale, PropsForAxis } from './types';
+import { ScaleBand } from 'd3-scale';
+import type { PropsForAxis } from './types';
 
 export default function axisPropsFromBandedScale<T>(
-  scale: BandedScale<T>,
+  scale: ScaleBand<T>,
 ): PropsForAxis<T> {
   const range = scale.range();
   const values = scale.domain();
@@ -11,7 +12,7 @@ export default function axisPropsFromBandedScale<T>(
   let offset = scale.bandwidth() / 2;
   const scaleCopy = scale.copy();
   if (scaleCopy.round()) offset = Math.round(offset);
-  const position = (d: T) => scaleCopy(d) + offset;
+  const position = (d: T) => (scaleCopy(d) || 0) + offset;
 
   return { range, values, format, position };
 }

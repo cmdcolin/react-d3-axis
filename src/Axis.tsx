@@ -27,7 +27,7 @@ const defaultAxisStyle: AxisStyle = {
 };
 type AxisProps<T> = {
   style: Record<string, any>;
-  range: Array<number>;
+  range: number[];
   values: Array<T>;
   position: Scaler<T>;
   format: (d: T) => string | number;

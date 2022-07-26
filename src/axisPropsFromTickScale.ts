@@ -1,7 +1,7 @@
-import { ScaleLinear } from 'd3-scale';
+import { ScaleLinear, ScaleQuantize } from 'd3-scale';
 
-export default function axisPropsFromTickScale<T, U>(
-  scale: ScaleLinear<T, U>,
+export default function axisPropsFromTickScale(
+  scale: ScaleLinear<number, number, never> | ScaleQuantize<number, never>,
   tickCount: number,
 ) {
   const range = scale.range();

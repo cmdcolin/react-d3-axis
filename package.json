@@ -2,7 +2,7 @@
   "name": "react-d3-axis-mod",
   "version": "0.1.5",
   "description": "React-based Axis component for D3 (fork with text shadow)",
-  "main": "dist/react-d3-axis.js",
+  "main": "dist/index.js",
   "repository": "https://github.com/cmdcolin/react-d3-axis-mod.git",
   "author": "cmdcolin",
   "license": "MIT",

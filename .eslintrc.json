@@ -1,5 +1,6 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["prettier", "@typescript-eslint"],
   "extends": "airbnb",
   "env": {
     "browser": true,
@@ -14,12 +15,14 @@
     "prefer-const": 0,
     "no-multiple-empty-lines": 0,
     "no-useless-escape": 0,
+    "no-unused-vars": 0,
 
     "react/no-did-mount-set-state": 2,
     "react/no-multi-comp": 0,
     "react/jsx-boolean-value": [2, "always"],
     "react/sort-comp": [
-      2, {
+      2,
+      {
         "order": [
           "displayName",
           "propTypes",
@@ -63,8 +66,11 @@
     "react/prefer-stateless-function": 0,
     "object-curly-spacing": 0,
     "import/imports-first": 0,
+    "import/extensions": 0,
     "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0,
-    "react/no-array-index-key": 0
+    "react/jsx-props-no-spreading": 0,
+    "react/no-array-index-key": 0,
+    "react/require-default-props": 0
   }
 }

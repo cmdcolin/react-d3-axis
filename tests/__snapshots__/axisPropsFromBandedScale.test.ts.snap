@@ -1,4 +1,6 @@
-exports[`test Creates axis props 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Works with bandwidth scales 1`] = `
 Object {
   "format": [Function],
   "position": [Function],
@@ -7,17 +9,9 @@ Object {
     500,
   ],
   "values": Array [
-    0,
-    10,
-    20,
-    30,
-    40,
-    50,
-    60,
-    70,
-    80,
-    90,
-    100,
+    "foo",
+    "bar",
+    "baz",
   ],
 }
 `;

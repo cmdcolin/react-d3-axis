@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Axis, { TOP, RIGHT, BOTTOM, LEFT } from '../Axis';
+import Axis, {
+  TOP, RIGHT, BOTTOM, LEFT,
+} from '../Axis';
 
 test('Renders bottom-oriented', () => {
   const { container } = render(

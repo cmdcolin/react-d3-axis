@@ -4,12 +4,12 @@ import type { Scaler, AxisStyle } from './types';
 
 function translateX<T>(scale0: Scaler<T>, scale1: Scaler<T>, d: T) {
   const x = scale0(d);
-  return `translate(${isFinite(x) ? x : scale1(d)},0)`;
+  return `translate(${Number.isFinite(x) ? x : scale1(d)},0)`;
 }
 
 function translateY<T>(scale0: Scaler<T>, scale1: Scaler<T>, d: T) {
   const y = scale0(d);
-  return `translate(0,${isFinite(y) ? y : scale1(d)})`;
+  return `translate(0,${Number.isFinite(y) ? y : scale1(d)})`;
 }
 
 export const TOP = 'TOP';
@@ -31,12 +31,14 @@ type AxisProps<T> = {
   range: Array<number>;
   values: Array<T>;
   position: Scaler<T>;
-  format(d: T): string;
+  format: (d: T) => string;
   shadow?: number;
 };
 export default function Axis<T>(props: AxisProps<T>) {
-  const { style, range, values, position, format, shadow = 0 } = props;
-  const axisStyle = Object.assign({}, defaultAxisStyle, style);
+  const {
+    style, range, values, position, format, shadow = 0,
+  } = props;
+  const axisStyle = { ...defaultAxisStyle, ...style };
   const {
     orient,
     tickSizeInner,
@@ -47,8 +49,7 @@ export default function Axis<T>(props: AxisProps<T>) {
     tickFont,
     tickFontSize,
   } = axisStyle;
-  const transform =
-    orient === TOP || orient === BOTTOM ? translateX : translateY;
+  const transform = orient === TOP || orient === BOTTOM ? translateX : translateY;
 
   const tickTransformer = (d: T) => transform(position, position, d);
 
@@ -66,7 +67,7 @@ export default function Axis<T>(props: AxisProps<T>) {
   const spacing = Math.max(tickSizeInner, 0) + tickPadding;
   return (
     <g
-      fill={'none'}
+      fill="none"
       fontSize={tickFontSize}
       fontFamily={tickFont}
       textAnchor={isRight ? 'start' : isLeft ? 'end' : 'middle'}
@@ -77,11 +78,11 @@ export default function Axis<T>(props: AxisProps<T>) {
         d={
           isHorizontal
             ? `M${k * tickSizeOuter},${range0}H${halfWidth}V${range1}H${
-                k * tickSizeOuter
-              }`
+              k * tickSizeOuter
+            }`
             : `M${range0},${k * tickSizeOuter}V${halfWidth}H${range1}V${
-                k * tickSizeOuter
-              }`
+              k * tickSizeOuter
+            }`
         }
       />
       {values.map((v, idx) => {

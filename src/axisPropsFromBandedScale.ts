@@ -14,5 +14,7 @@ export default function axisPropsFromBandedScale<T>(
   if (scaleCopy.round()) offset = Math.round(offset);
   const position = (d: T) => (scaleCopy(d) || 0) + offset;
 
-  return { range, values, format, position };
+  return {
+    range, values, format, position,
+  };
 }

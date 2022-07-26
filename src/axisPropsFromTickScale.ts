@@ -11,5 +11,7 @@ export default function axisPropsFromTickScale<T>(
 
   const position = scale.copy();
 
-  return { range, values, format, position };
+  return {
+    range, values, format, position,
+  };
 }

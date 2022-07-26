@@ -9,7 +9,10 @@
   "scripts": {
     "lint": "eslint --ext .ts,.tsx .",
     "build": "tsc",
-    "test": "jest"
+    "prebuild": "rimraf dist",
+    "preversion": "npm run lint && npm test && npm run build",
+    "test": "jest",
+    "postversion": "git push --follow-tags"
   },
   "files": [
     "src",

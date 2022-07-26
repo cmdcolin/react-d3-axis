@@ -1,4 +1,3 @@
-//
 import React from 'react';
 import type { Scaler, AxisStyle } from './types';
 
@@ -35,7 +34,9 @@ type AxisProps<T> = {
   shadow?: number;
 };
 export default function Axis<T>(props: AxisProps<T>) {
-  const { style, range, values, position, format, shadow = 0 } = props;
+  const {
+    style, range, values, position, format, shadow = 0,
+  } = props;
   const axisStyle = { ...defaultAxisStyle, ...style };
   const {
     orient,
@@ -47,8 +48,7 @@ export default function Axis<T>(props: AxisProps<T>) {
     tickFont,
     tickFontSize,
   } = axisStyle;
-  const transform =
-    orient === TOP || orient === BOTTOM ? translateX : translateY;
+  const transform = orient === TOP || orient === BOTTOM ? translateX : translateY;
 
   const tickTransformer = (d: T) => transform(position, position, d);
 
@@ -77,11 +77,11 @@ export default function Axis<T>(props: AxisProps<T>) {
         d={
           isHorizontal
             ? `M${k * tickSizeOuter},${range0}H${halfWidth}V${range1}H${
-                k * tickSizeOuter
-              }`
+              k * tickSizeOuter
+            }`
             : `M${range0},${k * tickSizeOuter}V${halfWidth}H${range1}V${
-                k * tickSizeOuter
-              }`
+              k * tickSizeOuter
+            }`
         }
       />
       {values.map((v, idx) => {

@@ -1,11 +1,9 @@
-// @flow
-import type { PropsForAxis } from './types';
 import { ScaleLinear } from 'd3-scale';
 
-export default function axisPropsFromTickScale<number, number, V>(
-  scale: ScaleLinear<number, number, V>,
+export default function axisPropsFromTickScale<T, U, V>(
+  scale: ScaleLinear<T, U, V>,
   tickCount: number,
-): PropsForAxis<number> {
+) {
   const range = scale.range();
   const values = scale.ticks(tickCount);
   const format = scale.tickFormat(tickCount);

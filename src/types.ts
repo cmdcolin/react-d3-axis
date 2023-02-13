@@ -7,7 +7,6 @@ export type AxisStyle = {
   tickSizeOuter: number;
   tickPadding: number;
   strokeWidth: number;
-  strokeColor: string;
   tickFont: string;
   tickFontSize: number;
 };

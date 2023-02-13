@@ -21,7 +21,6 @@ const defaultAxisStyle: AxisStyle = {
   tickSizeOuter: 6,
   tickPadding: 3,
   strokeWidth: 1,
-  strokeColor: 'black',
   tickFont: 'sans-serif',
   tickFontSize: 10,
 };
@@ -32,11 +31,19 @@ type AxisProps<T> = {
   position: Scaler<T>;
   format: (d: T) => string | number;
   shadow?: number;
+  bg?: string;
+  fg?: string;
 };
-export default function Axis<T>(props: AxisProps<T>) {
-  const {
-    style, range, values, position, format, shadow = 0,
-  } = props;
+export default function Axis<T>({
+  style,
+  range,
+  values,
+  position,
+  format,
+  shadow = 0,
+  bg = 'white',
+  fg = 'black',
+}: AxisProps<T>) {
   const axisStyle = { ...defaultAxisStyle, ...style };
   const {
     orient,
@@ -44,11 +51,12 @@ export default function Axis<T>(props: AxisProps<T>) {
     tickPadding,
     tickSizeOuter,
     strokeWidth,
-    strokeColor,
     tickFont,
     tickFontSize,
   } = axisStyle;
-  const transform = orient === TOP || orient === BOTTOM ? translateX : translateY;
+
+  const transform =
+    orient === TOP || orient === BOTTOM ? translateX : translateY;
 
   const tickTransformer = (d: T) => transform(position, position, d);
 
@@ -73,26 +81,26 @@ export default function Axis<T>(props: AxisProps<T>) {
       strokeWidth={strokeWidth}
     >
       <path
-        stroke={strokeColor}
+        stroke={fg}
         d={
           isHorizontal
             ? `M${k * tickSizeOuter},${range0}H${halfWidth}V${range1}H${
-              k * tickSizeOuter
-            }`
+                k * tickSizeOuter
+              }`
             : `M${range0},${k * tickSizeOuter}V${halfWidth}H${range1}V${
-              k * tickSizeOuter
-            }`
+                k * tickSizeOuter
+              }`
         }
       />
       {values.map((v, idx) => {
         let lineProps = {
-          stroke: strokeColor,
+          stroke: fg,
         } as { stroke: string; x1: number; x2: number; y1: number; y2: number };
         lineProps[`${x}2`] = k * tickSizeInner;
         lineProps[`${y}1`] = halfWidth;
         lineProps[`${y}2`] = halfWidth;
         let textProps = {
-          fill: strokeColor,
+          fill: fg,
           dy: isTop ? '0em' : isBottom ? '0.71em' : '0.32em',
         } as {
           fill: string;
@@ -108,7 +116,7 @@ export default function Axis<T>(props: AxisProps<T>) {
             {shadow ? (
               <text
                 style={{
-                  stroke: 'white',
+                  stroke: bg,
                   strokeWidth: shadow,
                 }}
                 {...textProps}
